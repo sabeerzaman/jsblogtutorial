@@ -5,6 +5,9 @@ module.exports = function( grunt ) {
 				src: 'src/**/*.js',
 				options: {
 					keepRunner: true,
+					junit: {
+						path: './'
+					},
 					specs: 'specs/**/*.spec.js',
 					vendor: [
 						'vendor/console-shim/console-shim-1.0.2.js',
