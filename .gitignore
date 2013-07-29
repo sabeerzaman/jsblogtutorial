@@ -1,6 +1,6 @@
 access_log
 error_log
-./node-server/html_snapshots/
+node-server/html_snapshots/
 sync.bat
 ./node-server/*.log
 .hg/
