@@ -1,0 +1,16 @@
+{
+  "name": "grunt-setup",
+  "version": "0.0.0",
+  "description": "Node setup for running Grunt tasks as part of build process",
+  "author": "Sabeer Zaman",
+  "dependencies": {
+    "phantomjs": "~1.9.1-0"
+  },
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-contrib-jshint": "~0.6.0",
+		"grunt-contrib-uglify": "~0.2.2",
+		"grunt-contrib-jasmine": "~0.5.1",
+		"grunt-contrib-watch": "~0.4.4"
+	}
+}
