@@ -5,3 +5,4 @@ sync.bat
 ./node-server/*.log
 .hg/
 .hgignore
+TEST-*.xml
