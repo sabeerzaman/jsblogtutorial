@@ -19,6 +19,10 @@ x view individual blog post
 x inline editing for blog posts from within single post view
 
 User Stories:
+- Create router to switch between:
+	- new post form
+	- individual post
+	- list of posts
 
 x able to programmatically save post to server
 x validate for required fields before sending to server

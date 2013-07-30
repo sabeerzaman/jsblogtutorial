@@ -6,7 +6,8 @@ module.exports = function( grunt ) {
 				options: {
 					keepRunner: true,
 					junit: {
-						path: './'
+						path: './',
+						consolidate: true
 					},
 					specs: 'specs/**/*.spec.js',
 					vendor: [
