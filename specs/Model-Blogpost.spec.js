@@ -35,6 +35,11 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 			this.server.restore();
 		});
 
+		it( 'should be POSTing to the "/blogposts" route', function() {
+			expect( this.request.method ).toEqual( 'POST' );
+			expect( this.request.url ).toEqual( '/blogposts' );
+		});
+
 		it( 'should send the body field as text (server API requires it)', function() {
 			expect( this.params.text ).toEqual( 'Test Body' );
 			expect( this.params.body ).toBeUndefined();					

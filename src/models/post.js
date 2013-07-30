@@ -9,7 +9,7 @@ Blog.Models.Post = Backbone.Model.extend({
 		modified: null
 	},
 	
-	url: '/slime',
+	url: '/blogposts',
 
 	toJSON: function() {
 		var now = new Date();
