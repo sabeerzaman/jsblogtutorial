@@ -18,7 +18,7 @@ x create a new post
 x view individual blog post
 
 User Stories:
-* In single post view, able to edit any 'editable' field by clicking an icon next to it
+x In single post view, able to edit any 'editable' field by clicking an icon next to it
 - Validation errors during form submission will display error alerts
 
 x able to programmatically save post to server
@@ -28,7 +28,7 @@ x Submitting form will save underlying model to server
 x When rendering a post view with a "non-new" post, should display it normally (no form)
 
 Tests:
-* Edits made on a page can be saved to the server by pressing "Save Changes" button
+* The "Updated: ..." label should be refreshed when changes are saved
 
 x Model initialization
 x Model default values
@@ -49,3 +49,4 @@ x Pressing enter or removing focus from inline editable element should:
 	x save it to model
 	x change editable field back to its original form 
 x "Save Changes" button appears disabled on single post view until the model changes
+x Edits made on a page can be saved to the server by pressing "Save Changes" button

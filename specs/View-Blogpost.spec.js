@@ -38,6 +38,7 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			this.view.delegateEvents();
 			this.view.$( 'button[type="submit"]' ).click();
 			expect( stub ).toHaveBeenCalledOnce();
+			stub.restore();
 		});
 	});
 
@@ -140,6 +141,15 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( this.view.$( 'button[type="submit"]' ) ).toBeDisabled();
 			this.model.set( 'title', 'The title has changed' );
 			expect( this.view.$( 'button[type="submit"]' ) ).not.toBeDisabled();
+		});
+
+		it( 'should save model changes to the server when "Save Changes" is clicked', function() {
+			var stub = sinon.stub( this.view.model, 'save' );
+			this.view.delegateEvents();
+			this.view.$( 'button[type="submit"]' ).prop( 'disabled', false );
+			this.view.$( 'button[type="submit"]' ).click();
+			expect( stub ).toHaveBeenCalledOnce();
+			stub.restore();
 		});
 	});
 });
