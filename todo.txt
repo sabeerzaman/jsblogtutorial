@@ -1,6 +1,7 @@
 JS "Blog Application"
 
-Legend: '-' => "not done", '*' => "currently doing", 'x' => "complete"
+Legend: 
+'-' => "not done", '*' => "currently doing", 'x' => "complete", '!' => "complete, but not TDD"
 
 Minimum Marketable Feature:
 * inline editing for blog posts from within single post view
@@ -27,8 +28,7 @@ x Submitting form will save underlying model to server
 x When rendering a post view with a "non-new" post, should display it normally (no form)
 
 Tests:
-- "Save Changes" button appears disabled on single post view until the model changes
-- Edits made on a page can be saved to the server by pressing "Save Changes" button
+* Edits made on a page can be saved to the server by pressing "Save Changes" button
 
 x Model initialization
 x Model default values
@@ -48,3 +48,4 @@ x Clicking edit image transforms area into input field
 x Pressing enter or removing focus from inline editable element should:
 	x save it to model
 	x change editable field back to its original form 
+x "Save Changes" button appears disabled on single post view until the model changes

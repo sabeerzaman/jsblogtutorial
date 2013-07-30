@@ -26,11 +26,18 @@ Blog.Views.Post = Backbone.View.extend({
 			'<em class="modified">Updated: <%= modified.toLocaleString() %></em>' +
 			'<em class="created">Posted: <%= created.toLocaleString() %></em>' +
 		'</header>' +
-		'<p class="body"><%= body %></p><img class="edit" data-target="body">',	
+		'<p class="body"><%= body %></p><img class="edit" data-target="body">' +
+		'<button type="submit" value="submit" disabled="disabled">Save Changes</button>',
 
 	initialize: function() {
 		if ( !this.model )
 			throw 'No model defined';
+
+		this.listenTo( this.model, 'change:title change:author change:body', this.enableSaveBtn );
+	},
+
+	enableSaveBtn: function() {
+		this.$( 'button[type="submit"]' ).prop( 'disabled', false );
 	},
 
 	render: function() {

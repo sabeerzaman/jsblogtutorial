@@ -127,5 +127,19 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 				expect( this.view.$( 'p.body' ) ).toHaveText( 'Changed Body' );
 			});
 		});
+
+		it( 'should have a disabled "Save Changes" button', function() {
+			expect( this.view.$el ).toContain( 'button[type="submit"]' );
+			var $btn = this.view.$( 'button[type="submit"]' );
+			expect( $btn ).toHaveText( 'Save Changes' );
+			expect( $btn ).toHaveValue( 'submit' );
+			expect( $btn ).toBeDisabled();
+		});
+
+		it( 'should enable "Save Changes" button when model values change', function() {
+			expect( this.view.$( 'button[type="submit"]' ) ).toBeDisabled();
+			this.model.set( 'title', 'The title has changed' );
+			expect( this.view.$( 'button[type="submit"]' ) ).not.toBeDisabled();
+		});
 	});
 });
