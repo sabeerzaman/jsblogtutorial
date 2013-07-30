@@ -23,6 +23,7 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 				title: 'Test Post',
 				body: 'Test Body'
 			});
+
 			this.post.save();
 			this.saveTime = Date.now();
 		});
@@ -60,6 +61,15 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 
 		it( 'should set author to "Anonymous" if not specified', function() {
 			expect( this.post.get( 'author' ) ).toEqual( 'Anonymous' );
+		});
+	});
+
+	describe( 'Model validation', function() {
+		it( 'the validate method should be defined', function() {
+			this.post = new Blog.Models.Post();
+
+			expect( this.post.validate ).toBeDefined();
+			expect( typeof this.post.validate ).toEqual( 'function' );
 		});
 	});
 });

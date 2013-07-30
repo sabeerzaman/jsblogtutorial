@@ -24,5 +24,9 @@ Blog.Models.Post = Backbone.Model.extend({
 		delete attr.body;
 
 		return attr;
+	},
+
+	validate: function() {
+		
 	}
 });
