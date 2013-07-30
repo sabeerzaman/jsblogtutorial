@@ -2,7 +2,7 @@ module.exports = function( grunt ) {
 	grunt.initConfig({
 		jasmine: {
 			client: {
-				src: 'src/**/*.js',
+				src: ['src/namespace.js', 'src/**/*.js'],
 				options: {
 					keepRunner: true,
 					junit: {
@@ -72,11 +72,21 @@ module.exports = function( grunt ) {
 					_: true
 				}
 			}
+		},
+
+		watch: {
+			files: [
+				'specs/**/*.js',
+				'src/**/*.js',
+				'specs/fixtures/html/*.html'
+				],
+			tasks: [ 'jasmine:client' ]
 		}
 	});
 
 	grunt.loadNpmTasks( 'grunt-contrib-jasmine' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
+	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 
 	grunt.registerTask( 'test', [ 'jasmine' ] );
 	grunt.registerTask( 'default', [ 'jshint', 'test' ] );
