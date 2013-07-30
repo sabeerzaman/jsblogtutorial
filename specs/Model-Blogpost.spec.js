@@ -26,6 +26,9 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 
 			this.post.save();
 			this.saveTime = Date.now();
+
+			this.request = this.server.requests[0];
+			this.params = JSON.parse( this.request.requestBody );
 		});
 
 		afterEach(function() {
@@ -33,20 +36,14 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 		});
 
 		it( 'should send the body field as text (server API requires it)', function() {
-			var request = this.server.requests[0],
-				params = JSON.parse( request.requestBody );
-
-			expect( params.text ).toEqual( 'Test Body' );
-			expect( params.body ).toBeUndefined();					
+			expect( this.params.text ).toEqual( 'Test Body' );
+			expect( this.params.body ).toBeUndefined();					
 		});
 
 		it( 'should send created, modified and author as non-empty fields to server', function() {
-			var request = this.server.requests[0],
-				params = JSON.parse( request.requestBody );
-
-			expect( params.created ).not.toBeNull();
-			expect( params.modified ).not.toBeNull();
-			expect( params.author ).not.toEqual( '' );
+			expect( this.params.created ).not.toBeNull();
+			expect( this.params.modified ).not.toBeNull();
+			expect( this.params.author ).not.toEqual( '' );
 		});
 
 		it( 'should set "created" and "modified" to the current time as a Date object', function() {
@@ -65,25 +62,26 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 	});
 
 	describe( 'Model validation', function() {
-		it( 'the validate method should be defined', function() {
-			var post = new Blog.Models.Post();
+		beforeEach(function() {
+			this.post = new Blog.Models.Post();			
+		});
 
-			expect( post.validate ).toBeDefined();
-			expect( typeof post.validate ).toEqual( 'function' );
+		it( 'the validate method should be defined', function() {
+			expect( this.post.validate ).toBeDefined();
+			expect( typeof this.post.validate ).toEqual( 'function' );
 		});
 
 		it( 'should not be valid model if title and/or body are empty', function() {
-			var post = new Blog.Models.Post();
-			expect( post.isValid() ).toBeFalsy();
+			expect( this.post.isValid() ).toBeFalsy();
 
-			post.set({ title: 'Test title', body: '' });
-			expect( post.isValid() ).toBeFalsy();
+			this.post.set({ title: 'Test title', body: '' });
+			expect( this.post.isValid() ).toBeFalsy();
 
-			post.set({ title: '', body: 'Test body' });
-			expect( post.isValid() ).toBeFalsy();
+			this.post.set({ title: '', body: 'Test body' });
+			expect( this.post.isValid() ).toBeFalsy();
 
-			post.set({ title: 'Test title', body: 'Test body' });
-			expect( post.isValid() ).toBeTruthy();
+			this.post.set({ title: 'Test title', body: 'Test body' });
+			expect( this.post.isValid() ).toBeTruthy();
 		});
 	});
 });
