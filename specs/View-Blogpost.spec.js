@@ -64,7 +64,7 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( this.view.$el ).toBe( 'article.post' );
 			expect( this.view.$( 'h1.title' ) ).toHaveText( 'First Blog Post' );
 			expect( this.view.$( 'p.body' ) ).toHaveText( 'Hello World!' );
-			expect( this.view.$( '.author' ) ).toHaveText( 'by Yours Truly' );
+			expect( this.view.$( '.author' ) ).toHaveText( 'Yours Truly' );
 			expect( this.view.$( '.modified' ) ).toHaveText( 'Updated: ' +
 				this.model.get('modified').toLocaleString() );
 			expect( this.view.$( '.created' ) ).toHaveText( 'Posted: ' +
@@ -72,11 +72,32 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 		});
 
 		it( 'should have ".edit" element next to editable fields', function() {
-			expect( this.view.$( 'h1.title' ).next( '.edit.title' ) ).toHaveLength(1);
-			expect( this.view.$( 'p.body' ).next( '.edit.body' ) ).toHaveLength(1);
-			expect( this.view.$( '.author' ).next( '.edit.author' ) ).toHaveLength(1);
-			expect( this.view.$( '.modified' ).next( '.edit.modified' ) ).not.toHaveLength(1);
-			expect( this.view.$( '.created' ).next( '.edit.created' ) ).not.toHaveLength(1);
+			expect( this.view.$( 'h1.title' ).next( '.edit' ) ).toHaveAttr( 'data-target', 'title' );
+			expect( this.view.$( 'p.body' ).next( '.edit' ) ).toHaveAttr( 'data-target', 'body' );
+			expect( this.view.$( '.author' ).next( '.edit' ) ).toHaveAttr( 'data-target', 'author' );
+			expect( this.view.$( '.modified' ).next( '.edit' ) ).not.toHaveLength(1);
+			expect( this.view.$( '.created' ).next( '.edit' ) ).not.toHaveLength(1);
+		});
+
+		it( 'should change title field into text input if edit element is clicked', function() {
+			this.view.$( '.edit[data-target="title"]' ).click();
+			expect( this.view.$el ).not.toContain( 'h1.title' );
+			expect( this.view.$el ).toContain( 'input.title' );
+			expect( this.view.$( 'input.title' ).val() ).toEqual( 'First Blog Post' );
+		});
+
+		it( 'should change author field into text input if edit element is clicked', function() {
+			expect( this.view.$el ).not.toContain( 'input.author' );
+			this.view.$( '.edit[data-target="author"]' ).click();
+			expect( this.view.$el ).toContain( 'input.author' );
+			expect( this.view.$( 'input.author' ).val() ).toEqual( 'Yours Truly' );
+		});
+
+		it( 'should change body paragraph into textarea if edit element is clicked', function() {
+			this.view.$( '.edit[data-target="body"]' ).click();
+			expect( this.view.$el ).not.toContain( 'p.body' );
+			expect( this.view.$el ).toContain( 'textarea.body' );
+			expect( this.view.$( 'textarea.body' ).val() ).toEqual( 'Hello World!' );
 		});
 	});
 });

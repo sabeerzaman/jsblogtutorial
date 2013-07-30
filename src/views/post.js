@@ -21,12 +21,12 @@ Blog.Views.Post = Backbone.View.extend({
 
 	readTemplate:
 		'<header>' +
-			'<h1 class="title"><%= title %></h1><img class="edit title">' +
-			'<strong class="author">by <%= author %></strong><img class="edit author">' +
+			'<h1 class="title"><%= title %></h1><img class="edit" data-target="title">' +
+			'by <strong class="author"><%= author %></strong><img class="edit" data-target="author">' +
 			'<em class="modified">Updated: <%= modified.toLocaleString() %></em>' +
 			'<em class="created">Posted: <%= created.toLocaleString() %></em>' +
 		'</header>' +
-		'<p class="body"><%= body %></p><img class="edit body">',	
+		'<p class="body"><%= body %></p><img class="edit" data-target="body">',	
 
 	initialize: function() {
 		if ( !this.model )
@@ -39,11 +39,23 @@ Blog.Views.Post = Backbone.View.extend({
 	},
 
 	events: {
-		'click button[type="submit"]': 'submitPost'
+		'click button[type="submit"]': 'submitPost',
+		'click .edit': 'makeFieldEditable'
 	},
 
 	submitPost: function( e ) {
 		e.preventDefault();
 		this.model.save();
+	},
+
+	makeFieldEditable: function( e ) {
+		var targetClass = $( e.currentTarget ).data('target'),
+			$target = this.$( '.'+targetClass ),
+			value = $target.text();
+
+		if ( targetClass != 'body' )
+			$target.replaceWith( $('<input class="'+targetClass+'" value="'+value+'" type="text" />') );
+		else
+			$target.replaceWith($('<textarea class="'+targetClass+'" type="text">'+value+'</textarea>'));
 	}
 });
