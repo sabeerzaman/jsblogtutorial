@@ -1,6 +1,11 @@
 JSBlogTutorial
 ==============
 
+## BitBucket Mercurial Repo
+
+There is also a Mercurial repo maintained in BitBucket that mirrors this, in case that is preferred by anyone:
+https://bitbucket.org/sabeerzaman/js-blog-tutorial
+
 ## Introduction
 
 This project was created primarily as a teaching tool to introduce: 
@@ -22,7 +27,7 @@ The initial few commits has the following already setup:
 		in _./node-server/blog-server.js_. Additionally, because this is deployed on an Apache server, the .htaccess file is
 		included that is used to proxy requests to the server's route ('/blogposts').
 
-2.	__"AJAX CRAWLER HELPER:__ There is also another Node server, defined in _node-server/web.js_ that intercepts 
+2.	__"AJAX CRAWLER HELPER":__ There is also another Node server, defined in _node-server/web.js_ that intercepts 
 		"_escaped_fragment_" requests from search engine crawlers (Google, Yahoo and Bing all implement this), runs 
 		PhantomJS to render the HTML file before returning the output. The PhantomJS code is in 
 		_node-server/phantom-server.js_. Again, there is a mod_rewrite directive in the .htaccess file to route all the
