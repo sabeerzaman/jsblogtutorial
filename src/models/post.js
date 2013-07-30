@@ -28,6 +28,17 @@ Blog.Models.Post = Backbone.Model.extend({
 		return attr;
 	},
 
+	parse: function( response ) {
+		if ( response.created ) {
+			response.created = new Date( response.created );
+		}
+		if ( response.modified ) {
+			response.modified = new Date( response.modified );
+		}
+
+		return response;
+	},
+
 	validate: function( attr ) {
 		var errors = [];
 

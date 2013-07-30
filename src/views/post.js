@@ -23,8 +23,8 @@ Blog.Views.Post = Backbone.View.extend({
 		'<header>' +
 			'<h1 class="title"><%= title %></h1><img class="edit" data-target="title">' +
 			'by <strong class="author"><%= author %></strong><img class="edit" data-target="author">' +
-			'<em class="modified">Updated: <%= modified.toLocaleString() %></em>' +
-			'<em class="created">Posted: <%= created.toLocaleString() %></em>' +
+			'<em class="modified">Updated: <%= (new Date( modified )).toLocaleString() %></em>' +
+			'<em class="created">Posted: <%= (new Date( created )).toLocaleString() %></em>' +
 		'</header>' +
 		'<p class="body"><%= body %></p><img class="edit" data-target="body">' +
 		'<button type="submit" value="submit" disabled="disabled">Save Changes</button>',
