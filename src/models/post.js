@@ -15,7 +15,9 @@ Blog.Models.Post = Backbone.Model.extend({
 		var now = new Date();
 		this.set( 'created', now );
 		this.set( 'modified', now );
-		this.set( 'author', 'slime' );
+
+		if ( !this.get( 'author' ) )
+			this.set( 'author', 'Anonymous' );
 
 		return _.clone( this.attributes );
 	}

@@ -51,5 +51,9 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 			// If within 5s of each other, reasonable to assume the time was set to "now"
 			expect( this.saveTime - created ).toBeLessThan( 5000 );
 		});
+
+		it( 'should set author to "Anonymous" if not specified', function() {
+			expect( this.post.get( 'author' ) ).toEqual( 'Anonymous' );
+		});
 	});
 });
