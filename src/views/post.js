@@ -14,9 +14,9 @@ Blog.Views.Post = Backbone.View.extend({
 	},
 
 	editTemplate: 
-		'<input type="text" class="title">' +
-		'<input type="text" class="author">' +
-		'<textarea class="body"></textarea>' +
+		'<label>Title: <input type="text" class="title"></label>' +
+		'<label>Author: <input type="text" class="author"></label>' +
+		'<label>Body: <textarea class="body"></textarea></label>' +
 		'<button type="submit" value="submit">Submit Post</button>',
 
 	readTemplate:

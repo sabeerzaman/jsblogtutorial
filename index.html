@@ -8,11 +8,32 @@
 </head>
 <body>
 	<div class="container">
+		<header class="row">
+			<h1 class="span12">Welcome to the JS Blog Admin Section</h1>
+		</header>
 		<div class="row">
-			<div class="span12">
-				<p>Hello, World!</p>
+			<div class="main span12">
+				<p></p>
 			</div>
 		</div>
 	</div>
+
+	<!-- THIRD PARTY SCRIPTS -->
+	<script src="vendor/jquery/jquery-1.9.1.js"></script>
+	<script src="vendor/underscore/underscore-1.4.4.js"></script>  
+	<script src="vendor/backbone/backbone-1.0.0.js"></script>
+
+	<!-- OUR SCRIPTS -->
+	<script src="src/namespace.js"></script>
+	<script src="src/models/post.js"></script>
+	<script src="src/views/post.js"></script>
+	<script src="src/router.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			var router = new Blog.Router();
+			router.start();  	
+		});
+	</script>
 </body>
 </html>
