@@ -21,12 +21,12 @@ Blog.Views.Post = Backbone.View.extend({
 
 	readTemplate:
 		'<header>' +
-			'<h1 class="title"><%= title %></h1>' +
-			'<strong class="author">by <%= author %></strong>' +
+			'<h1 class="title"><%= title %></h1><img class="edit title">' +
+			'<strong class="author">by <%= author %></strong><img class="edit author">' +
 			'<em class="modified">Updated: <%= modified.toLocaleString() %></em>' +
 			'<em class="created">Posted: <%= created.toLocaleString() %></em>' +
 		'</header>' +
-		'<p class="body"><%= body %></p>',	
+		'<p class="body"><%= body %></p><img class="edit body">',	
 
 	initialize: function() {
 		if ( !this.model )

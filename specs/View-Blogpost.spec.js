@@ -70,5 +70,13 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( this.view.$( '.created' ) ).toHaveText( 'Posted: ' +
 				this.model.get('created').toLocaleString() );
 		});
+
+		it( 'should have ".edit" element next to editable fields', function() {
+			expect( this.view.$( 'h1.title' ).next( '.edit.title' ) ).toHaveLength(1);
+			expect( this.view.$( 'p.body' ).next( '.edit.body' ) ).toHaveLength(1);
+			expect( this.view.$( '.author' ).next( '.edit.author' ) ).toHaveLength(1);
+			expect( this.view.$( '.modified' ).next( '.edit.modified' ) ).not.toHaveLength(1);
+			expect( this.view.$( '.created' ).next( '.edit.created' ) ).not.toHaveLength(1);
+		});
 	});
 });
