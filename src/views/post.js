@@ -1,36 +1,40 @@
 var Blog = Blog || {};
 
 Blog.Views.Post = Backbone.View.extend({
+	className: 'post',
+	
+	tagName: function() {
+		if ( this.model )
+			return this.model.isNew() ? 'form' : 'article';
+	},
+
+	template: function() {
+		if ( this.model )
+			return this.model.isNew() ? this.editTemplate : this.readTemplate;
+	},
+
+	editTemplate: 
+		'<input type="text" class="title">' +
+		'<input type="text" class="author">' +
+		'<textarea class="body"></textarea>' +
+		'<button type="submit" value="submit">Submit Post</button>',
+
+	readTemplate:
+		'<header>' +
+			'<h1 class="title"><%= title %></h1>' +
+			'<strong class="author">by <%= author %></strong>' +
+			'<em class="modified">Updated: <%= modified.toLocaleString() %></em>' +
+			'<em class="created">Posted: <%= created.toLocaleString() %></em>' +
+		'</header>' +
+		'<p class="body"><%= body %></p>',	
+
 	initialize: function() {
 		if ( !this.model )
 			throw 'No model defined';
 	},
 
 	render: function() {
-		if ( this.model.isNew() ) {
-			var $el = Backbone.$('<form>').attr({ class: 'post' });
-			this.setElement( $el );
-			this.$el.html(
-				'<input type="text" class="title">' +
-				'<input type="text" class="author">' +
-				'<textarea class="body"></textarea>' +
-				'<button type="submit" value="submit">Submit Post</button>'
-			);
-		}
-		else {
-			var $el = Backbone.$('<article>').attr({ class: 'post' }),
-				m = this.model;
-			this.setElement( $el );
-			this.$el.html(
-				'<header>' +
-					'<h1 class="title">' + m.get('title') + '</h1>' +
-					'<strong class="author">by ' + m.get('author') + '</strong>' +
-					'<em class="modified">Updated: ' + m.get('modified').toLocaleString() + '</em>' +
-					'<em class="created">Posted: ' + m.get('created').toLocaleString() + '</em>' +
-				'</header>' +
-				'<p class="body">' + m.get('body') + '</p>'
-			);			
-		}
+		this.$el.html( _.template( _.result( this, 'template' ), this.model.attributes ) );
 		return this;
 	},
 
