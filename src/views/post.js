@@ -13,7 +13,8 @@ Blog.Views.Post = Backbone.View.extend({
 		this.$el.html(
 			'<input type="text" class="title">' +
 			'<input type="text" class="author">' +
-			'<textarea class="body"></textarea>'
+			'<textarea class="body"></textarea>' +
+			'<button type="submit" value="submit">Submit Post</button>'
 			);
 		return this;
 	}

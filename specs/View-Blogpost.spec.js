@@ -14,14 +14,23 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 	});
 
 	describe( 'When rendered with a new Post model', function() {
+		beforeEach(function() {
+			this.view = new Blog.Views.Post({ model: new Backbone.Model() });			
+			this.view.render();
+		});
+		
 		it( 'should create a form with HTML input element per editable field', function() {
-			this.view = new Blog.Views.Post({ model: new Backbone.Model() });
-			var $el = this.view.render().$el;
-			
 			expect( this.view.$el ).toBe( 'form.post' );
 			expect( this.view.$el ).toContain( 'input.title' );
 			expect( this.view.$el ).toContain( 'textarea.body' );
 			expect( this.view.$el ).toContain( 'input.author' );
+		});
+
+		it( 'should have a "Submit Post" button', function() {
+			expect( this.view.$el ).toContain( 'button[type="submit"]' );
+			var $btn = this.view.$( 'button[type="submit"]' );
+			expect( $btn ).toHaveText( 'Submit Post' );
+			expect( $btn ).toHaveValue( 'submit' );
 		});
 	});
 });
