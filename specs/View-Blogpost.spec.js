@@ -151,5 +151,17 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( stub ).toHaveBeenCalledOnce();
 			stub.restore();
 		});
+
+		it( 'should refresh the "Updated" timestamp whenever model is saved to server', function() {
+			var testTimestamp = new Date( '01 Jan 2015' );
+			expect( this.view.$( '.modified' ) ).not.toHaveText( 
+				'Updated: ' + testTimestamp.toLocaleString() 
+				);
+			this.model.set( 'modified', testTimestamp );
+			this.model.trigger( 'sync' );
+			expect( this.view.$( '.modified' ) ).toHaveText( 
+				'Updated: ' + testTimestamp.toLocaleString() 
+				);
+		});
 	});
 });

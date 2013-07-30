@@ -34,10 +34,15 @@ Blog.Views.Post = Backbone.View.extend({
 			throw 'No model defined';
 
 		this.listenTo( this.model, 'change:title change:author change:body', this.enableSaveBtn );
+		this.listenTo( this.model, 'sync', this.changeUpdatedTime );
 	},
 
 	enableSaveBtn: function() {
 		this.$( 'button[type="submit"]' ).prop( 'disabled', false );
+	},
+
+	changeUpdatedTime: function() {
+		this.$( '.modified' ).text( 'Updated: ' + this.model.get( 'modified' ).toLocaleString() );
 	},
 
 	render: function() {

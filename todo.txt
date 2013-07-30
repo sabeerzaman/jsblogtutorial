@@ -4,7 +4,6 @@ Legend:
 '-' => "not done", '*' => "currently doing", 'x' => "complete", '!' => "complete, but not TDD"
 
 Minimum Marketable Feature:
-* inline editing for blog posts from within single post view
 - list all blog posts (showing concatenated text)
 	- fetch all blog posts from the server
 	- display all posts (full) in a single page
@@ -13,22 +12,22 @@ Minimum Marketable Feature:
 - support for tagging posts
 - show "tag cloud" - list all existing tags, and number of posts per tag
 - ability to filter visible posts by tag
+- alerts should be displayed for: success confirmations and errors
 
 x create a new post
 x view individual blog post
+x inline editing for blog posts from within single post view
 
 User Stories:
-x In single post view, able to edit any 'editable' field by clicking an icon next to it
-- Validation errors during form submission will display error alerts
 
 x able to programmatically save post to server
 x validate for required fields before sending to server
 x HTML form to allow for entering fields for server
 x Submitting form will save underlying model to server
 x When rendering a post view with a "non-new" post, should display it normally (no form)
+x In single post view, able to edit any 'editable' field by clicking an icon next to it
 
 Tests:
-* The "Updated: ..." label should be refreshed when changes are saved
 
 x Model initialization
 x Model default values
@@ -50,3 +49,4 @@ x Pressing enter or removing focus from inline editable element should:
 	x change editable field back to its original form 
 x "Save Changes" button appears disabled on single post view until the model changes
 x Edits made on a page can be saved to the server by pressing "Save Changes" button
+x The "Updated: ..." label should be refreshed when changes are saved
