@@ -52,23 +52,20 @@ Blog.Views.Post = Backbone.View.extend({
 		var targetClass = $( e.currentTarget ).data('target'),
 			$target = this.$( '.'+targetClass ),
 			value = $target.text(),
-			that = this,
-			selector;
+			that = this;
 
-		if ( targetClass != 'body' ) {
+		if ( targetClass != 'body' )
 			$editableField = $('<input class="'+targetClass+'" value="'+value+'" type="text" />');
-			selector = 'input.'+targetClass;
-		}
-		else {
+		else
 			$editableField = $('<textarea class="'+targetClass+'" type="text">'+value+'</textarea>');
-			selector = 'textarea.'+targetClass;
-		}
-	
-		$target.replaceWith( $editableField );
 
-		this.$( selector ).one('blur', function( e ) {
+		$editableField.one('blur', function( e ) {
 			var newValue = $( e.currentTarget ).val();
 			that.model.set( targetClass, newValue );
+			$( this ).replaceWith( $target );
+			$target.text( newValue );
 		});
+
+		$target.replaceWith( $editableField );
 	}
 });

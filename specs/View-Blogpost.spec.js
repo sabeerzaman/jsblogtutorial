@@ -100,18 +100,32 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( this.view.$( 'textarea.body' ).val() ).toEqual( 'Hello World!' );
 		});
 
-		it( 'should save field value to model when value is changed element loses focus', function() {
-			this.view.$( '.edit' ).click();
-			this.view.$( 'input.title' ).val( 'Changed Title' );
-			this.view.$( 'input.author' ).val( 'Changed Author' );
-			this.view.$( 'textarea.body' ).val( 'Changed Body' );
-			this.view.$( 'input.title' ).blur();
-			this.view.$( 'input.author' ).blur();
-			this.view.$( 'textarea.body' ).blur();
+		describe( 'when inline editable field loses focus', function() {
+			beforeEach(function() {
+				this.view.$( '.edit' ).click();
+				this.view.$( 'input.title' ).val( 'Changed Title' );
+				this.view.$( 'input.author' ).val( 'Changed Author' );
+				this.view.$( 'textarea.body' ).val( 'Changed Body' );
+				this.view.$( 'input.title' ).blur();
+				this.view.$( 'input.author' ).blur();
+				this.view.$( 'textarea.body' ).blur();				
+			});
 
-			expect( this.model.get( 'title' ) ).toEqual( 'Changed Title' );
-			expect( this.model.get( 'author' ) ).toEqual( 'Changed Author' );
-			expect( this.model.get( 'body' ) ).toEqual( 'Changed Body' );
+			it( 'should save field value to model when value is changed element loses focus', function() {
+				expect( this.model.get( 'title' ) ).toEqual( 'Changed Title' );
+				expect( this.model.get( 'author' ) ).toEqual( 'Changed Author' );
+				expect( this.model.get( 'body' ) ).toEqual( 'Changed Body' );
+			});
+
+			it( 'should change the element back to its original form with the new value set', function() {
+				expect( this.view.$el ).not.toContain( 'input.title' );
+				expect( this.view.$el ).not.toContain( 'input.author' );
+				expect( this.view.$el ).not.toContain( 'textarea.body' );
+
+				expect( this.view.$( 'h1.title' ) ).toHaveText( 'Changed Title' );
+				expect( this.view.$( '.author' ) ).toHaveText( 'Changed Author' );
+				expect( this.view.$( 'p.body' ) ).toHaveText( 'Changed Body' );
+			});
 		});
 	});
 });

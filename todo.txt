@@ -27,9 +27,7 @@ x Submitting form will save underlying model to server
 x When rendering a post view with a "non-new" post, should display it normally (no form)
 
 Tests:
-* Pressing enter or removing focus from inline editable element should:
-	x save it to model
-	* change editable field back to its original form 
+- "Save Changes" button appears disabled on single post view until the model changes
 - Edits made on a page can be saved to the server by pressing "Save Changes" button
 
 x Model initialization
@@ -47,3 +45,6 @@ x clicking "Submit Post" button should trigger "submitPost" method
 x Rendering view with a model fetched from server should not render a form but rather display ALL the fields in appropriate markup
 x All editable fields have a "edit icon" (like a pencil?) next to them
 x Clicking edit image transforms area into input field
+x Pressing enter or removing focus from inline editable element should:
+	x save it to model
+	x change editable field back to its original form 
