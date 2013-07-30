@@ -8,8 +8,10 @@ Blog.Models.Post = Backbone.Model.extend({
 		created: null,
 		modified: null
 	},
+
+	idAttribute: '_id',
 	
-	url: '/blogposts',
+	urlRoot: '/blogposts',
 
 	toJSON: function() {
 		var now = new Date();

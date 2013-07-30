@@ -32,6 +32,7 @@ x When rendering a post view with a "non-new" post, should display it normally (
 x In single post view, able to edit any 'editable' field by clicking an icon next to it
 
 Tests:
+! "submitPost" method should update all the model values from the form fields.
 
 x Model initialization
 x Model default values

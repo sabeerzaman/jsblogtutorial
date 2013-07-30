@@ -22,7 +22,7 @@ Blog.Router = Backbone.Router.extend({
 	singlePost: function( id ) {
 		console.log( 'singlePost route' );
 		this.updateHeading( '' );
-		var post = new Blog.Models.Post({ id: id });
+		var post = new Blog.Models.Post({ _id: id });
 		post.fetch().done(function() {
 			var newPostView = new Blog.Views.Post({ model: post });
 			$('.main').html( newPostView.render().$el );

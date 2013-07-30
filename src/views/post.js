@@ -57,6 +57,13 @@ Blog.Views.Post = Backbone.View.extend({
 
 	submitPost: function( e ) {
 		e.preventDefault();
+		if ( this.model.isNew() ) {
+			this.model.set({
+				title: this.$( 'input.title' ).val(),
+				body: this.$( 'textarea.body' ).val(),
+				author: this.$( 'input.author' ).val()
+			});
+		}
 		this.model.save();
 	},
 
