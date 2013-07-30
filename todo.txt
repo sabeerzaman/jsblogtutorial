@@ -1,0 +1,21 @@
+JS "Blog Application"
+
+Legend: '-' => "not done", '*' => "currently doing", 'x' => "complete"
+
+Minimum Marketable Feature:
+* create a new post
+- view individual blog post
+- list all blog posts (showing concatenated text)
+	- fetch all blog posts from the server
+	- display all posts (full) in a single page
+	- concatenate post text when showing in full list
+- inline editing for blog posts from within single post view
+- inline editing for blog posts from within full list view
+- support for tagging posts
+- show "tag cloud" - list all existing tags, and number of posts per tag
+- ability to filter visible posts by tag
+
+User Stories:
+* able to programmatically save post to server
+- validate for required fields before sending to server
+- HTML form to allow for entering fields for server
