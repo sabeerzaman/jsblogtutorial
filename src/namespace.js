@@ -1,3 +1,4 @@
 var Blog = {
-	Models: {}
+	Models: {},
+	Views: {}
 };
