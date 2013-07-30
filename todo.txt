@@ -19,3 +19,8 @@ User Stories:
 * able to programmatically save post to server
 - validate for required fields before sending to server
 - HTML form to allow for entering fields for server
+
+Tests:
+- Model initialization
+- Model default values
+- Save model to server
