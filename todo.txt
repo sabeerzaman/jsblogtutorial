@@ -21,6 +21,9 @@ User Stories:
 - HTML form to allow for entering fields for server
 
 Tests:
-- Model initialization
-- Model default values
-- Save model to server
+* Save model to server
+	- Sets the "created" + "modified" attributes to current time before sending to the server
+	- Sets the "author" attribute to "Anonymous" if none specified
+- Model validation
+x Model default values
+x Model initialization
