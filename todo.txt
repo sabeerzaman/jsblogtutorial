@@ -16,14 +16,24 @@ Minimum Marketable Feature:
 - ability to filter visible posts by tag
 
 User Stories:
-* able to programmatically save post to server
-- validate for required fields before sending to server
-- HTML form to allow for entering fields for server
+* HTML form to allow for entering fields for server
+- Submitting form will save underlying model to server
+- Validation errors during form submission will display error alerts
+
+x validate for required fields before sending to server
+x able to programmatically save post to server
 
 Tests:
-* Save model to server
-	- Sets the "created" + "modified" attributes to current time before sending to the server
-	- Sets the "author" attribute to "Anonymous" if none specified
-- Model validation
-x Model default values
+- Rendered View for a new Post model has HTML fields for all the editable attributes
+- "submitPost" method should trigger the post to be saved to the server
+- clicking "Submit Post" button should trigger "submitPost" method
+
 x Model initialization
+x Model default values
+x Save model to server
+	x Change 'body' field to 'text' field before sending 
+	x Sets the "created" + "modified" attributes to current time before sending to the server
+	x Sets the "author" attribute to "Anonymous" if none specified
+x Model validation
+	x Required: title, body
+x URL set on model corresponds to REST server route 
