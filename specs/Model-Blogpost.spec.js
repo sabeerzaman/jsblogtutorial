@@ -66,10 +66,24 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 
 	describe( 'Model validation', function() {
 		it( 'the validate method should be defined', function() {
-			this.post = new Blog.Models.Post();
+			var post = new Blog.Models.Post();
 
-			expect( this.post.validate ).toBeDefined();
-			expect( typeof this.post.validate ).toEqual( 'function' );
+			expect( post.validate ).toBeDefined();
+			expect( typeof post.validate ).toEqual( 'function' );
+		});
+
+		it( 'should not be valid model if title and/or body are empty', function() {
+			var post = new Blog.Models.Post();
+			expect( post.isValid() ).toBeFalsy();
+
+			post.set({ title: 'Test title', body: '' });
+			expect( post.isValid() ).toBeFalsy();
+
+			post.set({ title: '', body: 'Test body' });
+			expect( post.isValid() ).toBeFalsy();
+
+			post.set({ title: 'Test title', body: 'Test body' });
+			expect( post.isValid() ).toBeTruthy();
 		});
 	});
 });

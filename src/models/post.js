@@ -26,7 +26,15 @@ Blog.Models.Post = Backbone.Model.extend({
 		return attr;
 	},
 
-	validate: function() {
-		
+	validate: function( attr ) {
+		var errors = [];
+
+		if ( !attr.title.trim() )
+			errors.push({attribute: 'title', error: 'is required attribute'});
+		if ( !attr.body.trim() )
+			errors.push({attribute: 'body', error: 'is required attribute'});
+
+		if ( errors.length )
+			return errors;
 	}
 });
