@@ -17,5 +17,14 @@ Blog.Views.Post = Backbone.View.extend({
 			'<button type="submit" value="submit">Submit Post</button>'
 			);
 		return this;
+	},
+
+	events: {
+		'click button[type="submit"]': 'submitPost'
+	},
+
+	submitPost: function( e ) {
+		e.preventDefault();
+		this.model.save();
 	}
 });

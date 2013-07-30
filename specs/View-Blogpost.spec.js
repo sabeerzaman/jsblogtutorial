@@ -32,5 +32,12 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( $btn ).toHaveText( 'Submit Post' );
 			expect( $btn ).toHaveValue( 'submit' );
 		});
+
+		it( 'should save the model when the button is clicked', function() {
+			var stub = sinon.stub( this.view.model, 'save' );
+			this.view.delegateEvents();
+			this.view.$( 'button[type="submit"]' ).click();
+			expect( stub ).toHaveBeenCalledOnce();
+		});
 	});
 });
