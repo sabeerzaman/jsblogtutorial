@@ -28,8 +28,8 @@ x When rendering a post view with a "non-new" post, should display it normally (
 
 Tests:
 * Pressing enter or removing focus from inline editable element should:
-	* save it to model
-	- change editable field back to its original form 
+	x save it to model
+	* change editable field back to its original form 
 - Edits made on a page can be saved to the server by pressing "Save Changes" button
 
 x Model initialization

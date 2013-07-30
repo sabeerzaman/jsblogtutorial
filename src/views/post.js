@@ -51,11 +51,24 @@ Blog.Views.Post = Backbone.View.extend({
 	makeFieldEditable: function( e ) {
 		var targetClass = $( e.currentTarget ).data('target'),
 			$target = this.$( '.'+targetClass ),
-			value = $target.text();
+			value = $target.text(),
+			that = this,
+			selector;
 
-		if ( targetClass != 'body' )
-			$target.replaceWith( $('<input class="'+targetClass+'" value="'+value+'" type="text" />') );
-		else
-			$target.replaceWith($('<textarea class="'+targetClass+'" type="text">'+value+'</textarea>'));
+		if ( targetClass != 'body' ) {
+			$editableField = $('<input class="'+targetClass+'" value="'+value+'" type="text" />');
+			selector = 'input.'+targetClass;
+		}
+		else {
+			$editableField = $('<textarea class="'+targetClass+'" type="text">'+value+'</textarea>');
+			selector = 'textarea.'+targetClass;
+		}
+	
+		$target.replaceWith( $editableField );
+
+		this.$( selector ).one('blur', function( e ) {
+			var newValue = $( e.currentTarget ).val();
+			that.model.set( targetClass, newValue );
+		});
 	}
 });

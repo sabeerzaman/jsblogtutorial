@@ -99,5 +99,19 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( this.view.$el ).toContain( 'textarea.body' );
 			expect( this.view.$( 'textarea.body' ).val() ).toEqual( 'Hello World!' );
 		});
+
+		it( 'should save field value to model when value is changed element loses focus', function() {
+			this.view.$( '.edit' ).click();
+			this.view.$( 'input.title' ).val( 'Changed Title' );
+			this.view.$( 'input.author' ).val( 'Changed Author' );
+			this.view.$( 'textarea.body' ).val( 'Changed Body' );
+			this.view.$( 'input.title' ).blur();
+			this.view.$( 'input.author' ).blur();
+			this.view.$( 'textarea.body' ).blur();
+
+			expect( this.model.get( 'title' ) ).toEqual( 'Changed Title' );
+			expect( this.model.get( 'author' ) ).toEqual( 'Changed Author' );
+			expect( this.model.get( 'body' ) ).toEqual( 'Changed Body' );
+		});
 	});
 });
