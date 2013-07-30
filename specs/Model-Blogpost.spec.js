@@ -24,6 +24,7 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 				body: 'Test Body'
 			});
 			this.post.save();
+			this.saveTime = Date.now();
 		});
 
 		afterEach(function() {
@@ -39,6 +40,16 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 			expect( params.created ).not.toBeNull();
 			expect( params.modified ).not.toBeNull();
 			expect( params.author ).not.toEqual( '' );
+		});
+
+		it( 'should set "created" and "modified" to the current time as a Date object', function() {
+			var created = this.post.get('created'),
+				modified = this.post.get('modified');
+
+			expect( created ).toEqual( modified );
+			expect( created.constructor ).toEqual( Date );
+			// If within 5s of each other, reasonable to assume the time was set to "now"
+			expect( this.saveTime - created ).toBeLessThan( 5000 );
 		});
 	});
 });

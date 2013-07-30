@@ -12,8 +12,9 @@ Blog.Models.Post = Backbone.Model.extend({
 	url: '/slime',
 
 	toJSON: function() {
-		this.set( 'created', 'slime' );
-		this.set( 'modified', 'slime' );
+		var now = new Date();
+		this.set( 'created', now );
+		this.set( 'modified', now );
 		this.set( 'author', 'slime' );
 
 		return _.clone( this.attributes );
