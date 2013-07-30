@@ -5,27 +5,26 @@ Legend: '-' => "not done", '*' => "currently doing", 'x' => "complete"
 Minimum Marketable Feature:
 * create a new post
 - view individual blog post
+- inline editing for blog posts from within single post view
 - list all blog posts (showing concatenated text)
 	- fetch all blog posts from the server
 	- display all posts (full) in a single page
 	- concatenate post text when showing in full list
-- inline editing for blog posts from within single post view
 - inline editing for blog posts from within full list view
 - support for tagging posts
 - show "tag cloud" - list all existing tags, and number of posts per tag
 - ability to filter visible posts by tag
 
 User Stories:
-* HTML form to allow for entering fields for server
-- Submitting form will save underlying model to server
+* Submitting form will save underlying model to server
 - Validation errors during form submission will display error alerts
 
 x validate for required fields before sending to server
 x able to programmatically save post to server
+x HTML form to allow for entering fields for server
 
 Tests:
-- Rendered View for a new Post model has HTML fields for all the editable attributes
-- "submitPost" method should trigger the post to be saved to the server
+* "submitPost" method should trigger the post to be saved to the server
 - clicking "Submit Post" button should trigger "submitPost" method
 
 x Model initialization
@@ -37,3 +36,4 @@ x Save model to server
 x Model validation
 	x Required: title, body
 x URL set on model corresponds to REST server route 
+x Rendered View for a new Post model has HTML fields for all the editable attributes
