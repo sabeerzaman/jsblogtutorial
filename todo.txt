@@ -3,8 +3,7 @@ JS "Blog Application"
 Legend: '-' => "not done", '*' => "currently doing", 'x' => "complete"
 
 Minimum Marketable Feature:
-* view individual blog post
-- inline editing for blog posts from within single post view
+* inline editing for blog posts from within single post view
 - list all blog posts (showing concatenated text)
 	- fetch all blog posts from the server
 	- display all posts (full) in a single page
@@ -15,18 +14,22 @@ Minimum Marketable Feature:
 - ability to filter visible posts by tag
 
 x create a new post
+x view individual blog post
 
 User Stories:
-* When rendering a post view with a "non-new" post, should display it normally (no form)
+* In single post view, able to edit any 'editable' field by clicking an icon next to it
 - Validation errors during form submission will display error alerts
 
 x validate for required fields before sending to server
 x able to programmatically save post to server
 x HTML form to allow for entering fields for server
 x Submitting form will save underlying model to server
+x When rendering a post view with a "non-new" post, should display it normally (no form)
 
 Tests:
-* Rendering view with a model fetched from server should not render a form but rather display ALL the fields in appropriate markup
+* All editable fields have a "edit icon" (like a pencil?) next to them
+- Clicking pencil icon transforms area into input field
+- Edits made on a page can be saved to the server by pressing "Save Changes" button
 
 x Model initialization
 x Model default values
@@ -40,3 +43,4 @@ x URL set on model corresponds to REST server route
 x Rendered View for a new Post model has HTML fields for all the editable attributes
 x "submitPost" method should trigger the post to be saved to the server
 x clicking "Submit Post" button should trigger "submitPost" method
+x Rendering view with a model fetched from server should not render a form but rather display ALL the fields in appropriate markup

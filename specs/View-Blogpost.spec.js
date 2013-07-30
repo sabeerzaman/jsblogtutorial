@@ -40,4 +40,35 @@ describe( '(Blog)Post View (for src/views/post.js)', function() {
 			expect( stub ).toHaveBeenCalledOnce();
 		});
 	});
+
+	describe( 'When rendered with a fully-defined Post (from server)', function() {
+		beforeEach(function() {
+			this.model = new Backbone.Model({
+				id: 1,
+				title: 'First Blog Post',
+				body: 'Hello World!',
+				author: 'Yours Truly',
+				created: new Date( '15 June 2012' ),
+				modified: new Date( '01 January 2013' )
+			});
+
+			this.view = new Blog.Views.Post({ model: this.model });			
+			this.view.render();
+		});
+
+		it( 'should display all Post attributes in read-only HTML markup', function() {
+			expect( this.view.$el ).not.toBe( 'form' );
+			expect( this.view.$el ).not.toContain( 'input' );
+			expect( this.view.$el ).not.toContain( 'textarea' );
+
+			expect( this.view.$el ).toBe( 'article.post' );
+			expect( this.view.$( 'h1.title' ) ).toHaveText( 'First Blog Post' );
+			expect( this.view.$( 'p.body' ) ).toHaveText( 'Hello World!' );
+			expect( this.view.$( '.author' ) ).toHaveText( 'by Yours Truly' );
+			expect( this.view.$( '.modified' ) ).toHaveText( 'Updated: ' +
+				this.model.get('modified').toLocaleString() );
+			expect( this.view.$( '.created' ) ).toHaveText( 'Posted: ' +
+				this.model.get('created').toLocaleString() );
+		});
+	});
 });
