@@ -31,12 +31,18 @@ describe( '(Blog)Post Model (for src/models/post.js)', function() {
 			this.server.restore();
 		});
 
-		it( 'should send non-empty fields to server', function() {
+		it( 'should send the body field as text (server API requires it)', function() {
 			var request = this.server.requests[0],
 				params = JSON.parse( request.requestBody );
 
-			expect( params.title ).toEqual( 'Test Post' );
-			expect( params.body ).toEqual( 'Test Body' );
+			expect( params.text ).toEqual( 'Test Body' );
+			expect( params.body ).toBeUndefined();					
+		});
+
+		it( 'should send created, modified and author as non-empty fields to server', function() {
+			var request = this.server.requests[0],
+				params = JSON.parse( request.requestBody );
+
 			expect( params.created ).not.toBeNull();
 			expect( params.modified ).not.toBeNull();
 			expect( params.author ).not.toEqual( '' );

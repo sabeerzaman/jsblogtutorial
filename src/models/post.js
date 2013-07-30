@@ -19,6 +19,10 @@ Blog.Models.Post = Backbone.Model.extend({
 		if ( !this.get( 'author' ) )
 			this.set( 'author', 'Anonymous' );
 
-		return _.clone( this.attributes );
+		var attr = _.clone( this.attributes );
+		attr.text = attr.body;
+		delete attr.body;
+
+		return attr;
 	}
 });
